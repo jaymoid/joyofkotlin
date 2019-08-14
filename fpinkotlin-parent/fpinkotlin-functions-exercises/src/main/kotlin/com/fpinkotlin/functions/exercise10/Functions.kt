@@ -1,6 +1,5 @@
 package com.fpinkotlin.functions.exercise10
 
-
 class Functions
 
 fun square(n: Int) = n * n
@@ -9,7 +8,7 @@ fun triple(n: Int) = n * 3
 
 fun <T, U, V> compose(f: (U) -> V, g: (T) -> U): (T) -> V = { f(g(it)) }
 
-val add: (Int) -> (Int) -> Int = { a -> { b -> a + b} }
+val add: (Int) -> (Int) -> Int = { a -> { b -> a + b } }
 
 val compose = { x: (Int) -> Int -> { y: (Int) -> Int -> { z: Int -> x(y(z)) } } }
 
@@ -27,11 +26,11 @@ fun <T, U, V> higherAndThen(): ((T) -> U) -> ((U) -> V) -> (T) -> V =
         }
     }
 
-fun <A, B, C> partialA(a: A, f: (A) -> (B) -> C): (B) -> C =  f(a)
+fun <A, B, C> partialA(a: A, f: (A) -> (B) -> C): (B) -> C = f(a)
 
 fun <A, B, C> partialB(b: B, f: (A) -> (B) -> C): (A) -> C = { a: A -> f(a)(b) }
 
-fun <A,B,C,D> curried() =
+fun <A, B, C, D> curried() =
     { a: A ->
         { b: B ->
             { c: C ->
@@ -40,4 +39,9 @@ fun <A,B,C,D> curried() =
         }
     }
 
-fun <A, B, C> curry(f: (A, B) -> C): (A) -> (B) -> C = TODO("curry")
+fun <A, B, C> curry(f: (A, B) -> C): (A) -> (B) -> C =
+    { a: A ->
+        { b: B ->
+            f(a, b)
+        }
+    }
