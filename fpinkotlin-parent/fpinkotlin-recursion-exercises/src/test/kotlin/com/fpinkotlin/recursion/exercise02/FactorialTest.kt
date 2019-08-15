@@ -8,9 +8,9 @@ import io.kotlintest.specs.StringSpec
 class FactorialTest: StringSpec() {
 
     init {
-
         "factorial" {
             forAll(Gen.choose(1, 30)) { n ->
+                println(n)
                 factorial(n + 1) == factorial(n) * (n + 1)
             }
         }
