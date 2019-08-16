@@ -1,6 +1,17 @@
 package com.fpinkotlin.recursion.exercise06
 
-fun <T, U> foldRight(list: List<T>, identity: U, f: (T, U) -> U): U = TODO("foldRight")
+// Exercise 4.6
+// Write this abstracted function and call it foldRight. Then write the string function in terms
+// of foldRight.
+fun <T, U> foldRight(list: List<T>, identity: U, f: (T, U) -> U): U {
+    fun go (l: List<T>, acc: U): U =
+        if (l.isEmpty())
+            acc
+        else
+            f(l.head(), go(l.tail(), acc))
+    
+    return go(list, identity)
+}
 
 fun <T> List<T>.head(): T =
         if (this.isEmpty())

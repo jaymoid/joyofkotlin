@@ -1,7 +1,18 @@
 package com.fpinkotlin.recursion.exercise04
 
+//Exercise 4.4
+//Write a tail-recursive version of the makeString function. (Try not to look at the tail-recursive version of sum.)
+
 fun <T> makeString(list: List<T>, delim: String): String {
-    TODO("makeString")
+    tailrec fun go (l: List<T>, acc: String): String =
+        if (l.isEmpty()) {
+            acc
+        } else {
+            val newAcc: String = acc + (if (l != list) delim else "") + l.head().toString()
+            go(l.tail(), newAcc)
+        }
+
+    return go (list, "")
 }
 
 fun <T> List<T>.head(): T =

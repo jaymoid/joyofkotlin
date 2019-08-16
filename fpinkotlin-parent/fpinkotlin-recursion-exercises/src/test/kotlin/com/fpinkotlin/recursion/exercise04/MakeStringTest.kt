@@ -7,9 +7,7 @@ import io.kotlintest.specs.StringSpec
 class MakeStringTest : StringSpec() {
 
     init {
-        
         "makeString" {
-
             forAll(Gen.list(Gen.string())) { list ->
                 makeString(list, ",") == list.joinToString(",")
             }
