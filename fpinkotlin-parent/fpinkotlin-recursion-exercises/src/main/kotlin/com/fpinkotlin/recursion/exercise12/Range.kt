@@ -24,4 +24,15 @@ fun <T, U> foldLeft(list: List<T>, z: U, f: (U, T) -> U): U {
 
 fun <T> prepend(list: List<T>, elem: T): List<T> = foldLeft(list, listOf(elem)) { lst, elm -> lst + elm }
 
-fun range(start: Int, end: Int): List<Int> = TODO("range")
+//Exercise 4.12
+//
+//Write a recursive version of range based on the functions you’ve defined in previous sections.
+fun range(start: Int, end: Int): List<Int> {
+    tailrec fun go(x: Int, acc:List<Int> = emptyList()): List<Int> =
+        if (x >= start)
+            go(x.dec(), acc + x)
+        else
+            acc
+
+    return go(end)
+}

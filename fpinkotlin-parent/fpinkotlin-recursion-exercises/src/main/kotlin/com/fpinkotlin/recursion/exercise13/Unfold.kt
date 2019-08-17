@@ -1,6 +1,5 @@
 package com.fpinkotlin.recursion.exercise13
 
-
 fun <T> List<T>.head(): T =
     if (this.isEmpty())
         throw IllegalArgumentException("head called on empty list")
@@ -24,4 +23,20 @@ fun <T, U> foldLeft(list: List<T>, z: U, f: (U, T) -> U): U {
 
 fun <T> prepend(list: List<T>, elem: T): List<T> = foldLeft(list, listOf(elem)) { lst, elm -> lst + elm }
 
-fun <T> unfold(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T> = TODO("unfold")
+// Exercise 4.13
+//
+// Write a recursive version of unfold.
+//
+// Hint
+//
+// Again, start from the range function recursive implementation and try to generify it.
+fun <T> unfold(seed: T, f: (T) -> T, p: (T) -> Boolean): List<T> {
+    fun go(x: T): List<T> =
+        if (p(x))
+            prepend(go(f(x)), x)
+        else
+            emptyList()
+
+    return go(seed)
+}
+

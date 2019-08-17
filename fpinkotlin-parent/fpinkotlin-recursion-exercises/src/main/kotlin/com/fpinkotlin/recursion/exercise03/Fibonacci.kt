@@ -17,5 +17,5 @@ fun fib(x: Int): BigInteger {
         if (n == x) b
         else go(n.inc(), b, a + b)
 
-    return if (x == 0) BigInteger.ONE else go(1, BigInteger.ONE, BigInteger.ONE)
+    return if (x == 0) BigInteger.ZERO else go(1, BigInteger.ZERO, BigInteger.ONE)
 }

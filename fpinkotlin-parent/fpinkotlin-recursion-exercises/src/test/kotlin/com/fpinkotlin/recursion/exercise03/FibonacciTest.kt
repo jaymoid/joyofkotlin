@@ -12,13 +12,13 @@ class FibonacciTest : StringSpec(
         // fib:1 1 2 3 5 8 13 21 34
         "simple ones" {
             assertSoftly {
-                0 shouldBeFib 1
+                0 shouldBeFib 0
                 1 shouldBeFib 1
-                2 shouldBeFib 2
-                3 shouldBeFib 3
-                4 shouldBeFib 5
-                5 shouldBeFib 8
-                6 shouldBeFib 13
+                2 shouldBeFib 1
+                3 shouldBeFib 2
+                4 shouldBeFib 3
+                5 shouldBeFib 5
+                6 shouldBeFib 8
             }
         }
     }) {

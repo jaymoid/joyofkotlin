@@ -21,6 +21,16 @@ fun <T, U> foldLeft(list: List<T>, z: U, f: (U, T) -> U): U {
     return foldLeft_(list, z, f)
 }
 
-fun <T> prepend(list: List<T>, elem: T): List<T> = TODO("prepend")
+// Exercise 4.7
+// Define a reverse function using a fold.
+//
+// Hint
+// Remember that foldRight might overflow the stack when used with long lists, so you should prefer foldLeft as
+// often as possible. You should also create the prepend function working on the list and adding an element in
+// front of the list.
+// Don’t worry about performance. This is a problem you’ll address in chapter 5.
+// Make your function work with immutable lists using the + operator.
 
-fun <T> reverse(list: List<T>): List<T> = TODO("reverse")
+fun <T> prepend(list: List<T>, elem: T): List<T> = listOf(elem) + list
+
+fun <T> reverse(list: List<T>): List<T> = foldLeft(list, listOf(), ::prepend)

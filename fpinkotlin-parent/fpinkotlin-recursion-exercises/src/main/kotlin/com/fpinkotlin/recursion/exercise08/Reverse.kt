@@ -22,6 +22,14 @@ fun <T, U> foldLeft(list: List<T>, z: U, f: (U, T) -> U): U {
     return foldLeft_(list, z, f)
 }
 
-fun <T> prepend(list: List<T>, elem: T): List<T> = TODO("prepend")
+// Exercise 4.8
+// Define the reverse function using only the append version of + without resorting to concatenation.
+//
+// Hint
+// What you need for this exercise is to define the prepend function while not using concatenation. Try to start with a
+// function copying a list through a left fold.
 
-fun <T> reverse(list: List<T>): List<T> = TODO("reverse")
+// this s
+fun <T> prepend(list: List<T>, elem: T): List<T> = foldLeft(list, listOf(elem)) {a, b -> a + b }
+
+fun <T> reverse(list: List<T>): List<T> = foldLeft(list, listOf(), ::prepend)

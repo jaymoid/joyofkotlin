@@ -1,5 +1,6 @@
 package com.fpinkotlin.recursion.exercise18
 
+import java.math.BigInteger
 
 fun <T> List<T>.head(): T =
     if (this.isEmpty())
@@ -23,7 +24,7 @@ fun <T, U> foldLeft(list: List<T>, z: U, f: (U, T) -> U): U {
 }
 
 fun <T, U> map(list: List<T>, f: (T) -> U): List<U> =
-    foldLeft(list, listOf()) { acc, elem -> acc + f(elem)}
+    foldLeft(list, listOf()) { acc, elem -> acc + f(elem) }
 
 fun <T> iterate(seed: T, f: (T) -> T, n: Int): List<T> {
     tailrec fun iterate_(acc: List<T>, seed: T): List<T> =
@@ -34,12 +35,14 @@ fun <T> iterate(seed: T, f: (T) -> T, n: Int): List<T> {
     return iterate_(listOf(), seed)
 }
 
-fun <T> makeString(list: List<T>, separator: String): String =
-    when {
-        list.isEmpty() -> ""
-        list.tail().isEmpty() -> list.head().toString()
-        else -> list.head().toString() + // <4>
-            foldLeft(list.tail(), "") { x, y -> x + separator + y}
-    }
+//Exercise 4.18
+//
+//Define a corecursive version of the Fibonacci function producing a string representing the first n Fibonacci numbers.
+fun fibonacciList(n: Int): List<BigInteger> =
+    iterate(Pair(BigInteger.ZERO, BigInteger.ONE), { (a, b) -> Pair(b, a + b) }, n + 1)
+        .map { it.first }
 
-fun fiboCorecursive(number: Int): String = TODO("fiboCorecursive")
+fun fiboCorecursive(number: Int): String = makeString(fibonacciList(number), ",")
+
+fun <T> makeString(list: List<T>, separator: String): String =
+    foldLeft(list, "") { acc: String, x: T -> acc + (if (acc != "") "," else "") + x }

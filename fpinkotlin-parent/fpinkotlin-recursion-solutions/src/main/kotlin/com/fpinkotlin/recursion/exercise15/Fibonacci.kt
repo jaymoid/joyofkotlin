@@ -46,3 +46,9 @@ fun <T> makeString(list: List<T>, separator: String): String =
             foldLeft(list.tail(), "") { x, y -> x + separator + y}
     }
 
+fun main() {
+    val fibTo19: List<Pair<Int, String>> =
+        (0..100).toList().zip(fibo(19).split(','))
+
+    println(fibTo19)
+}
